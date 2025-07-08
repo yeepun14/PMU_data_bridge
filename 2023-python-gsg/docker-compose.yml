@@ -13,13 +13,13 @@ services:
       - --node-id
       - '1'
       - --kafka-addr
-      - PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092 
+      - PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
       - --advertise-kafka-addr
-      - PLAINTEXT://redpanda-broker:29092,OUTSIDE://localhost:9092
+      - PLAINTEXT://redpanda-broker:29092,OUTSIDE://192.168.38.136:9092
       - --pandaproxy-addr
       - PLAINTEXT://0.0.0.0:28082,OUTSIDE://0.0.0.0:8082
       - --advertise-pandaproxy-addr
-      - PLAINTEXT://redpanda-broker:28082,OUTSIDE://localhost:8082
+      - PLAINTEXT://redpanda-broker:28082,OUTSIDE://192.168.38.136:8082
       - --rpc-addr
       - 0.0.0.0:33145
       - --advertise-rpc-addr
@@ -41,26 +41,3 @@ services:
       - CONSOLE_BIND=0.0.0.0:8080
     depends_on:
       - redpanda-broker
-
-services:
-  timescaledb:
-    image: timescale/timescaledb:2.20.0-pg17
-    ports:
-      - "0.0.0.0:30000:5432"  # Expose PostgreSQL (TimescaleDB) on host port 30000
-    environment:
-      POSTGRES_PASSWORD: password  # Default POSTGRES_USER: postgres, Default POSTGRES_DB: postgres
-    volumes:
-      - ./data/timescale:/var/lib/postgresql/data  # Host-relative path for TimescaleDB data
-    restart: unless-stopped
-
-grafana:
-    image: grafana/grafana-oss
-    ports:
-      - "0.0.0.0:30001:3000"  # Expose Grafana web UI on host port 30001
-    depends_on:
-      - timescaledb
-    volumes:
-      - ./data/grafana:/var/lib/grafana  # Host-relative path for Grafana data
-    restart: unless-stopped
-
-
