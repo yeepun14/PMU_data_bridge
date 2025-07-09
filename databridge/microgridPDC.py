@@ -52,7 +52,7 @@ if __name__ == "__main__":
                     value_serializer=lambda m: json.dumps(m).encode('ascii')
                 )
 
-                topic = "randomPMU3p"
+                topic = "microgridPMU"
 
                 def on_success(metadata):
                     print(f"Message produced to topic '{metadata.topic}' at offset {metadata.offset}")

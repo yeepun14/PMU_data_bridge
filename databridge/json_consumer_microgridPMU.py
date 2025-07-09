@@ -12,7 +12,7 @@ consumer = KafkaConsumer(
   value_deserializer=lambda m: json.loads(m.decode('ascii'))
 )
 
-consumer.subscribe(["randomPMU3p"])
+consumer.subscribe(["microgridPMU"])
 
 CONNECTION = "postgres://postgres:password@localhost:30000/postgres"
 
