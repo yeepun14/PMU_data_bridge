@@ -19,7 +19,7 @@ def increase_angle(ang, delta):
 
 if __name__ == "__main__":
 
-    pmu = Pmu(ip="127.0.0.1", port=2)
+    pmu = Pmu(ip="127.0.0.1", port=20000)
     pmu.logger.setLevel("DEBUG")
     
     ph_v_conversion = int(400 / 65535 * 100000)  # Voltage phasor conversion factor

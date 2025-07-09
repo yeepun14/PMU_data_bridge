@@ -14,7 +14,7 @@ to start sending measurements.
 
 if __name__ == "__main__":
 
-    pdc = Pdc(pdc_id=7, pmu_ip="127.0.0.1", pmu_port=2)
+    pdc = Pdc(pdc_id=7, pmu_ip="127.0.0.1", pmu_port=20000)
     pdc.logger.setLevel("DEBUG")
 
     pdc.run()  # Connect to PMU
