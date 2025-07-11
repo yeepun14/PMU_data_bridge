@@ -40,15 +40,15 @@ The data bridging process involves extracting PMU data, transforming it into a s
 
 ![Image](<https://github.com/user-attachments/assets/3b1ec6a9-7486-485f-ba60-60b3b424247a />)
 
-- ### Phasor measurement Units (PMUs)
+### Phasor measurement Units (PMUs)
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
 
-- ### Phasor Data Concentrator (PDC)
+### Phasor Data Concentrator (PDC)
 
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
 > IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems
 
-- ### Redpanda
+### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
 
 > **Choose Redpanda because** we need a Kafka-compatible streaming system with high 
@@ -64,12 +64,19 @@ You’re building a system with stream processing, event sourcing, or real-time 
 | *Client types*| Servers, apps, streaming systems | IoT devices, mobile clients |
 | *Connectivity* | Not optimized for mobile/IoT | Built for intermittent, unreliable connections |
 
-- ### TimescaleDB
+### TimescaleDB
 A time-series database built on PostgreSQL that is suitable for real-time data ingestion and querying.
 
-- ### Grafana
+### Grafana
 An open-source platform used for data visualization and monitoring.
 
 # What we did
-
+### Phasor measurement Units (PMUs)
+### Phasor Data Concentrator (PDC)
+### Redpanda
+### TimescaleDB
+### Grafana
+### Progress of all week
+### Synchronize lab
+### seperate
 # Result
