@@ -71,12 +71,12 @@ A time-series database built on PostgreSQL that is suitable for real-time data i
 An open-source platform used for data visualization and monitoring.
 
 # What we did
+### Progress of all week
 ### Phasor measurement Units (PMUs)
 ### Phasor Data Concentrator (PDC)
 ### Message Queue
 ### DataBase
 ### Grafana
-### Progress of all week
 ### Synchronize lab
 ### seperate
 # Result
