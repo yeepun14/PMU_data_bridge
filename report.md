@@ -55,7 +55,7 @@ A high-performance streaming platform that is designed for real-time data proces
 durability and performance.
 You’re building a system with stream processing, event sourcing, or real-time analytics.
 
-| Feature | Redpanda | Description |
+| Feature | Redpanda | MQTT Broker |
 | --- | --- | -- |
 | *Protocol* | Kafka (binary, high-throughput) | MQTT (lightweight, pub/sub) |
 | *Performance goal* | High throughput, high durability | Lightweight, low power use |
