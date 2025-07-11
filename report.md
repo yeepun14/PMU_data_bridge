@@ -71,12 +71,22 @@ A time-series database built on PostgreSQL that is suitable for real-time data i
 An open-source platform used for data visualization and monitoring.
 
 # What we did
-### Progress of all week
+### Weekly Progress Summary
+
 ### Phasor measurement Units (PMUs)
+
 ### Phasor Data Concentrator (PDC)
-### Message Queue
-### DataBase
-### Grafana
-### Synchronize lab
-### seperate
+
+### Message Queue System
+TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL stores the data for future use.
+
+- Redpanda
+
+### Database Integration
+
+### Grafana Dashboard
+
+### Lab Synchronization (Synchronous Generator)
+
+### System Design
 # Result
