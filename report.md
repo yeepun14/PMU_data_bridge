@@ -51,6 +51,19 @@ A device used to measure the electrical parameters on an electricity grid in **r
 - ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
 
+> **Choose Redpanda because** we need a Kafka-compatible streaming system with high 
+durability and performance.
+You’re building a system with stream processing, event sourcing, or real-time analytics.
+
+| Feature | Redpanda | Description |
+| --- | --- | -- |
+| *Protocol* | Kafka (binary, high-throughput) | MQTT (lightweight, pub/sub) |
+| *Performance goal* | High throughput, high durability | Lightweight, low power use |
+|*Use case focus*| Streaming big data | Communicating with many small devices | 
+|*Persistence*| Strong durability guarantees| Often memory-based with optional persistence |
+| *Client types*| Servers, apps, streaming systems | IoT devices, mobile clients |
+| *Connectivity* | Not optimized for mobile/IoT | Built for intermittent, unreliable connections |
+
 - ### TimescaleDB
 A time-series database built on PostgreSQL that is suitable for real-time data ingestion and querying.
 
