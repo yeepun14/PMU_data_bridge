@@ -73,8 +73,8 @@ An open-source platform used for data visualization and monitoring.
 # What we did
 ### Phasor measurement Units (PMUs)
 ### Phasor Data Concentrator (PDC)
-### Redpanda
-### TimescaleDB
+### Message Queue
+### DataBase
 ### Grafana
 ### Progress of all week
 ### Synchronize lab
