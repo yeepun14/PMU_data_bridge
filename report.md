@@ -18,6 +18,21 @@ If these don’t match, it can lead to:
 - Equipment damage
 - Unstable grid operation
 
+### PMU in Grid–Microgrid Synchronization
+Phasor Measurement Units (PMUs) play a key role in ensuring safe and stable synchronization between a microgrid and the main grid. They provide time-synchronized, high-resolution measurements of voltage and current phasors, enabling accurate monitoring and control during grid transitions.
+
+**Key Benefits of PMU Integration**
+1. Time-Synchronized Data
+PMUs use GPS-based time stamping to provide synchronized phasor data, essential for comparing voltage, frequency, and phase angle between the grid and microgrid.
+2. Accurate Parameter Matching
+Synchronization requires that voltage, frequency, and phase angle are closely aligned. PMUs enable real-time monitoring to ensure safe connection or reconnection.
+3. Fast Fault Detection
+With high reporting rates (30–120 samples/second), PMUs detect disturbances faster than traditional SCADA, allowing quicker responses to instability.
+4. Support for Inverter Control
+PMUs enhance the control of inverter-based microgrids by supporting advanced control strategies such as droop control and virtual synchronous operation.
+5. Safe Reconnection & Black Start
+PMUs facilitate seamless resynchronization after islanding or blackouts by tracking alignment conditions in real time.
+
 ## Data Bridging project
 This project is designed to bridge data from phasor measurement units (PMUs) to Redpanda. The goal is to **facilitate the transfer and processing** of PMU data in a real-time streaming environment.
 ### Overview
