@@ -3,12 +3,13 @@ This project is designed to bridge data from phasor measurement units (PMUs) to 
 ### Overview
 The data bridging process involves extracting PMU data, transforming it into a suitable format, and then loading it into Redpanda for real-time analytics and processing.
 
-![Overview Diagram](image/overview.png)
+![Uploading overview.png…]()
 
 - ### Phasor measurement Units
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
 
-- ### PDC ()
+- ### PDC (Phasor Data Concentrator)
+
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
 
 - ### Redpanda
