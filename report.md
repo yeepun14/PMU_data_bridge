@@ -31,6 +31,7 @@ A device used to measure the electrical parameters on an electricity grid in **r
 - ### Phasor Data Concentrator (PDC)
 
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
+> IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems
 
 - ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
@@ -41,6 +42,6 @@ A time-series database built on PostgreSQL that is suitable for real-time data i
 - ### Grafana
 An open-source platform used for data visualization and monitoring.
 
-# what we did
+# What we did
 
-# result
+# Result
