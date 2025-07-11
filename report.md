@@ -47,6 +47,8 @@ A device used to measure the electrical parameters on an electricity grid in **r
 
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
 > IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems
+> IEEE C37.118.2: Standard that defines how synchronized phasor data is exchanged in real time between PMUs, PDCs, and other systems using      standard message formats over any communication protocol.
+
 
 - ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
