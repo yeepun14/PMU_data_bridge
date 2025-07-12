@@ -97,11 +97,11 @@ localhost: 9092 # change localhost to Network ip
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
-PC 1 collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
+- **PC 1** collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
 
-PC 2 is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
+- **PC 2** is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
 
-PC 3 stores the received data into a database and displays synchronized Voltage (V) and other measurements through a Grafana Dashboard.
+- **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard.
 ![Flowchart](https://github.com/user-attachments/assets/5e39f41c-4b2d-4553-8f73-a008e83cf377)
 
 ### Lab Synchronization (Synchronous Generator)
