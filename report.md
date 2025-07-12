@@ -80,7 +80,13 @@ An open-source platform used for data visualization and monitoring.
 ### Message Queue System
 TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL stores the data for future use.
 
-- Redpanda
+- **Redpanda**\
+A high-throughput, low-latency streaming platform based on a distributed log architecture. It supports real-time data ingestion and processing with strong consistency guarantees, making it suitable for event-driven systems and time-sensitive applications. Its built-in management interface facilitates intuitive data stream monitoring and control, enabling seamless integration within modern data pipelines.
+
+```
+localhost: 9092 # change localhost to network ip
+192.168.38.136: 9092
+```
 
 ### Database Integration
 
@@ -88,5 +94,7 @@ TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL st
 
 ### Lab Synchronization (Synchronous Generator)
 ![IMG_9374](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
+
 ### System Design
+
 # Result
