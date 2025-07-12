@@ -83,8 +83,10 @@ TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL st
 - **Redpanda**\
 A high-throughput, low-latency streaming platform based on a distributed log architecture. It supports real-time data ingestion and processing with strong consistency guarantees, making it suitable for event-driven systems and time-sensitive applications. Its built-in management interface facilitates intuitive data stream monitoring and control, enabling seamless integration within modern data pipelines.
 
+From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change localhost to Network ip at port 9092 (Kafka broker)
+
 ```
-localhost: 9092 # change localhost to network ip
+localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
 ```
 
