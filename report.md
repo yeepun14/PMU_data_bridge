@@ -5,7 +5,7 @@ Infrastructure Under Development: A RE100 Microgrid — a fully renewable energy
 The project involves connecting the microgrid to the main grid, which requires **synchronization** between the two systems. Therefore, it is necessary to **collect data in real time**.
 
 ### Grid and Microgrid Synchronization
-Grid and Microgrid Synchronization refers to the process of aligning a microgrid's electrical parameters (such as voltage, frequency, and phase angle) with those of the main utility grid to ensure safe and stable operation when connecting or disconnecting.
+Grid and Microgrid Synchronization refers to the process of aligning a microgrid's electrical parameters (such as Voltage, Frequency, and Phase angle) with those of the main utility grid to ensure safe and stable operation when connecting or disconnecting.
 
 When a microgrid reconnects to the main grid (after operating in island mode) or shares power in grid-connected mode, the following conditions must match:
 - Voltage magnitude
@@ -94,9 +94,20 @@ localhost: 9092 # change localhost to Network ip
 
 ### Grafana Dashboard
 
-### Lab Synchronization (Synchronous Generator)
-![IMG_9374](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
-
 ### System Design
+We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
+
+PC 1 collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
+
+PC 2 is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
+
+PC 3 stores the received data into a database and displays synchronized Voltage (V) and other measurements through a Grafana Dashboard.
+![Flowchart](https://github.com/user-attachments/assets/5e39f41c-4b2d-4553-8f73-a008e83cf377)
+
+### Lab Synchronization (Synchronous Generator)
+
+![Synchronized_summary](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
+
+![Synchronized_Lab](https://github.com/user-attachments/assets/ff1ef94a-3b76-484f-893b-13e09f9b8a23)
 
 # Result
