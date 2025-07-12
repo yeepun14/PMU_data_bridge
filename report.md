@@ -87,6 +87,6 @@ TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL st
 ### Grafana Dashboard
 
 ### Lab Synchronization (Synchronous Generator)
-
+![IMG_9374](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
 ### System Design
 # Result
