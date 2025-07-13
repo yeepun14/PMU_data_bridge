@@ -35,6 +35,7 @@ PMUs facilitate seamless resynchronization after islanding or blackouts by track
 
 ## Data Bridging project
 This project is designed to bridge data from phasor measurement units (PMUs) to Redpanda. The goal is to **facilitate the transfer and processing** of PMU data in a real-time streaming environment.
+
 ### Overview
 The data bridging process involves extracting PMU data, transforming it into a suitable format, and then loading it into Redpanda for real-time analytics and processing.
 
@@ -89,6 +90,7 @@ From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change
 localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
 ```
+- **Consumer**\
 
 ### Database Integration
 
