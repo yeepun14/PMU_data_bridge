@@ -4,7 +4,7 @@ import psycopg2
 from datetime import datetime, timezone, timedelta
 
 consumer = KafkaConsumer(
-  bootstrap_servers=["192.168.38.136:9092"],
+  bootstrap_servers=["localhost:9092"], #192.168.38.136
   group_id="demo-group",
   auto_offset_reset="earliest",
   enable_auto_commit=False,
@@ -141,3 +141,4 @@ finally:
 # P_total DOUBLE PRECISION,
 # Q_total DOUBLE PRECISION
 # );
+
