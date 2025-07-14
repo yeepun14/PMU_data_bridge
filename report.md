@@ -153,8 +153,7 @@ From [json_consumer_microgridPMU](databridge/json_consumer_microgridPMU.py)
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
-![Flowchart](https://github.com/user-attachments/assets/7f718b2e-cf0d-4a9a-b5db-736b89ec956a)
-
+![Flowchart](https://github.com/user-attachments/assets/b24babc6-0878-498b-a049-43a8d84eabdd)
 
 - **PC 1** collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
 
