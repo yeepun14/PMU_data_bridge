@@ -102,7 +102,7 @@ From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change
 localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
 ```
-- **Consumer**\
+- **Consumer**
 
 ### Database Integration
 
@@ -119,7 +119,7 @@ We have divided the system into three separate PCs, each performing specific tas
 ![Flowchart](https://github.com/user-attachments/assets/5e39f41c-4b2d-4553-8f73-a008e83cf377)
 
 ### Lab Synchronization (Synchronous Generator)
-Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The "Dark Lamp Method" is used for synchronization, with safety and proper meter usage emphasized.
+Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
 
 ![Synchronized_summary](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
 
@@ -127,5 +127,8 @@ When all three lamps on the Synchronizing Panel go dark simultaneously, it indic
 
 
 ![Synchronized_Lab](https://github.com/user-attachments/assets/ff1ef94a-3b76-484f-893b-13e09f9b8a23)
+
+Although PMU is not directly used in this lab, it relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators — which PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
+
 
 # Result
