@@ -72,6 +72,21 @@ A time-series database built on PostgreSQL that is suitable for real-time data i
 ### Grafana
 An open-source platform used for data visualization and monitoring.
 
+### Lab Synchronization (Synchronous Generator)
+Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
+
+Lab Simulation from https://perso.univ-lyon1.fr/charles.joubert/web_anim/simen_Pelton_couplee_1.html
+
+![Synchronized_summary](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
+
+When all three lamps go dark simultaneously, it means the voltage from the generator is **equal** in magnitude, frequency, and phase to the grid. At that exact moment, the voltage difference is nearly zero, so **no current flows through the lamps** (I ≈ 0). This ensures a smooth connection without causing **inrush current, arcing, or mechanical stress**, which can damage the generator or system. Synchronizing at any other time would result in a phase mismatch and potentially large circulating currents.
+
+![Synchronized_Lab](https://github.com/user-attachments/assets/ff1ef94a-3b76-484f-893b-13e09f9b8a23)
+
+When all three lamps go dark simultaneously, it indicates that the voltage magnitude, frequency, and phase match. This is the correct moment to close the breaker and synchronize the generator, ensuring a smooth and safe connection without circulating current or electrical stress.
+
+PMUs relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators. PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
+
 # What we did
 ### Weekly Progress Summary
 | **Week**   | **Date**                             | **Activity Description**                                                                                                                                                                                       |
@@ -88,8 +103,21 @@ An open-source platform used for data visualization and monitoring.
 | **Week 9** | 20/07/2025 – 21/07/2025 | **Pitch Day**: Final project presentations and official conclusion of the internship program.   
 
 ### Phasor measurement Units (PMUs)
+PMUs measure values such as voltage (V), current (I), Frequency, and Phase angle in real time, and transmit the data using the IEEE C37.118 protocol — the primary standard for PMU data. The information is sent as a binary stream in a frame-based format.
+
+From [microgridPMU](databridge/microgridPMU.py)
 
 ### Phasor Data Concentrator (PDC)
+From [microgridPDC](databridge/microgridPDC.py)
+
+```
+ใส่โค้ดที่อยากอธิบาย
+```
+From [tinyPDC_udp](databridge/tinyPDC_udp.py)
+
+```
+ใส่โค้ดที่อยากอธิบาย
+```
 
 ### Message Queue System
 TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL stores the data for future use.
@@ -105,6 +133,18 @@ localhost: 9092 # change localhost to Network ip
 ```
 - **Consumer**\
 From [docker-compose.yml](/databridge/docker-database/docker-compose.yml)
+
+From [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py)
+
+```
+ใส่โค้ดที่อยากอธิบาย
+```
+
+From [json_consumer_microgridPMU](databridge/json_consumer_microgridPMU.py)
+
+```
+ใส่โค้ดที่อยากอธิบาย
+```
 
 ### Database Integration
 
@@ -123,20 +163,5 @@ We have divided the system into three separate PCs, each performing specific tas
 - **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard.
 
 (It is not necessary to follow this design)
-
-### Lab Synchronization (Synchronous Generator)
-Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
-
-Lab Simulation from https://perso.univ-lyon1.fr/charles.joubert/web_anim/simen_Pelton_couplee_1.html
-
-![Synchronized_summary](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
-
-When all three lamps go dark simultaneously, it means the voltage from the generator is **equal** in magnitude, frequency, and phase to the grid. At that exact moment, the voltage difference is nearly zero, so **no current flows through the lamps** (I ≈ 0). This ensures a smooth connection without causing **inrush current, arcing, or mechanical stress**, which can damage the generator or system. Synchronizing at any other time would result in a phase mismatch and potentially large circulating currents.
-
-![Synchronized_Lab](https://github.com/user-attachments/assets/ff1ef94a-3b76-484f-893b-13e09f9b8a23)
-
-
-PMU relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators — which PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
-
 
 # Result
