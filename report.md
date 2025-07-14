@@ -116,7 +116,7 @@ We have divided the system into three separate PCs, each performing specific tas
 - **PC 2** is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
 
 - **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard.
-![Flowchart](https://github.com/user-attachments/assets/5e39f41c-4b2d-4553-8f73-a008e83cf377)
+![Flowchart](https://github.com/user-attachments/assets/7f718b2e-cf0d-4a9a-b5db-736b89ec956a)
 
 ### Lab Synchronization (Synchronous Generator)
 Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
