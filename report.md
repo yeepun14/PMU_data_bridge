@@ -73,6 +73,18 @@ An open-source platform used for data visualization and monitoring.
 
 # What we did
 ### Weekly Progress Summary
+| **Week**   | **Date**                             | **Activity Description**                                                                                                                                                                                       |
+|------------|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Week 0** | 15/05/2025                           | **Orientation**: Provided an overview of the internship program and assigned project topics to each group.                                                                                                     |
+| **Week 1** | 28/05/2025                           | **Tutorial Session 1**: Introduction to MQTT Communication and ESP32 Programming.                                                                                                                              |
+| **Week 2** | 04/06/2025                           | **Tutorial Session 2**: Covered basic Linux commands, database and dashboard setup, Docker, and API server development.                                                                                        |
+| **Week 3** | 11/06/2025                           | **Tutorial Session 3**: Introduction to Git and GitHub for version control, and using Node-RED for workflow automation.                                                                                        |
+| **Week 4** | 15/06/2025 – 21/06/2025 | Practiced sending data from **pyPMU** and **randomPMU** to **tinyPDC** and subsequently to **Redpanda**. However, sending real PMU data was not yet successful.                                                |
+| **Week 5** | 22/06/2025 – 28/06/2025 | Successfully transmitted data to **Redpanda**, processed it into structured orders, and forwarded it to the **database** and **Grafana** for visualization.                                                   |
+| **Week 6** | 29/06/2025 – 05/07/2025 | Utilized real-time data from **gridPMU** and **microgridPMU** to compute active (P) and reactive power (Q). The processed data was then sent to the database and Grafana, including phase plot visualizations. |
+| **Week 7** | 06/07/2025 – 12/07/2025 | Conducted data ping testing and completed the written report.                                                                                                            |
+| **Week 8** | 13/07/2025 – 19/07/2025 | Prepared final presentation materials.                                                      |
+| **Week 9** | 20/07/2025 – 21/07/2025 | **Pitch Day**: Final project presentations and official conclusion of the internship program.   
 
 ### Phasor measurement Units (PMUs)
 
