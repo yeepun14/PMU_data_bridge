@@ -75,7 +75,7 @@ An open-source platform used for data visualization and monitoring.
 # What we did
 ### Weekly Progress Summary
 | **Week**   | **Date**                             | **Activity Description**                                                                                                                                                                                       |
-|------------|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Week 0** | 15/05/2025                           | **Orientation**: Provided an overview of the internship program and assigned project topics to each group.                                                                                                     |
 | **Week 1** | 28/05/2025                           | **Tutorial Session 1**: Introduction to MQTT Communication and ESP32 Programming.                                                                                                                              |
 | **Week 2** | 04/06/2025                           | **Tutorial Session 2**: Covered basic Linux commands, database and dashboard setup, Docker, and API server development.                                                                                        |
@@ -103,7 +103,8 @@ From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change
 localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
 ```
-- **Consumer**
+- **Consumer**\
+From [docker-compose.yml](/databridge/docker-database/docker-compose.yml)
 
 ### Database Integration
 
@@ -112,24 +113,30 @@ localhost: 9092 # change localhost to Network ip
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
+![Flowchart](https://github.com/user-attachments/assets/7f718b2e-cf0d-4a9a-b5db-736b89ec956a)
+
+
 - **PC 1** collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
 
 - **PC 2** is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
 
 - **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard.
-![Flowchart](https://github.com/user-attachments/assets/7f718b2e-cf0d-4a9a-b5db-736b89ec956a)
+
+(It is not necessary to follow this design)
 
 ### Lab Synchronization (Synchronous Generator)
 Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
 
+Lab Simulation from https://perso.univ-lyon1.fr/charles.joubert/web_anim/simen_Pelton_couplee_1.html
+
 ![Synchronized_summary](https://github.com/user-attachments/assets/4ca42d7c-28fe-4d93-92c9-b663df7cb976)
 
-When all three lamps on the Synchronizing Panel go dark simultaneously, it indicates that the Voltage of the synchronous generator is **equal** in magnitude and phase to the external power system (and I = 0). This is the optimal moment to synchronize the generator to the grid.
-
+When all three lamps go dark simultaneously, it means the voltage from the generator is **equal** in magnitude, frequency, and phase to the grid. At that exact moment, the voltage difference is nearly zero, so **no current flows through the lamps** (I ≈ 0). This ensures a smooth connection without causing **inrush current, arcing, or mechanical stress**, which can damage the generator or system. Synchronizing at any other time would result in a phase mismatch and potentially large circulating currents.
 
 ![Synchronized_Lab](https://github.com/user-attachments/assets/ff1ef94a-3b76-484f-893b-13e09f9b8a23)
 
-Although PMU is not directly used in this lab, it relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators — which PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
+
+PMU relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators — which PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
 
 
 # Result
