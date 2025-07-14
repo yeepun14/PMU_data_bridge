@@ -33,15 +33,6 @@ PMUs enhance the control of inverter-based microgrids by supporting advanced con
 5. Safe Reconnection & Black Start
 PMUs facilitate seamless resynchronization after islanding or blackouts by tracking alignment conditions in real time.
 
-## Data Bridging project
-This project is designed to bridge data from phasor measurement units (PMUs) to Redpanda. The goal is to **facilitate the transfer and processing** of PMU data in a real-time streaming environment.
-
-### Overview
-The data bridging process involves extracting PMU data, transforming it into a suitable format, and then loading it into Redpanda for real-time analytics and processing.
-
-![Image](<https://github.com/user-attachments/assets/3b1ec6a9-7486-485f-ba60-60b3b424247a />)
-
-
 ### Lab Synchronization (Synchronous Generator)
 Study the control of a synchronous generator connected to the power grid. It focuses on synchronization, real power control via mechanical torque, and reactive power control via field current. Key observations include power-angle characteristics and the V-Curve. The **"Dark Lamp Method"** is used for synchronization (A synchronization method using three lamps. When all go dark at once, the generator's voltage matches the grid — indicating the right moment to connect) ,with safety and proper meter usage emphasized.
 
@@ -56,6 +47,15 @@ When all three lamps go dark simultaneously, it means the voltage from the gener
 When all three lamps go dark simultaneously, it indicates that the voltage magnitude, frequency, and phase match. This is the correct moment to close the breaker and synchronize the generator, ensuring a smooth and safe connection without circulating current or electrical stress.
 
 PMUs relates conceptually. The lab involves phasor-based analysis of voltage, current, and power in synchronous generators. PMUs are designed to measure in real-time. PMUs help monitor synchronization, stability, and power flow in large power systems, exactly the kind of behavior being studied in this experiment.
+
+## Data Bridging project
+This project is designed to bridge data from phasor measurement units (PMUs) to Redpanda. The goal is to **facilitate the transfer and processing** of PMU data in a real-time streaming environment.
+
+### Overview
+The data bridging process involves extracting PMU data, transforming it into a suitable format, and then loading it into Redpanda for real-time analytics and processing.
+
+![Image](<https://github.com/user-attachments/assets/3b1ec6a9-7486-485f-ba60-60b3b424247a />)
+
 
 ### Phasor measurement Units (PMUs)
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in **IEEE C37.118 format.**
