@@ -42,12 +42,13 @@ The data bridging process involves extracting PMU data, transforming it into a s
 ![Image](<https://github.com/user-attachments/assets/3b1ec6a9-7486-485f-ba60-60b3b424247a />)
 
 ### Phasor measurement Units (PMUs)
-A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
+A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in **IEEE C37.118 format.**
+
+> IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems have Total Vector Error (TVE) < 1% in steady state
 
 ### Phasor Data Concentrator (PDC)
 
-A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in IEEE C37.118 format.
-> IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems
+A system that collects data from multiple PMUs and aggregates it for further processing or transmission.
 
 ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
