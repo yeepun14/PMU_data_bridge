@@ -4,17 +4,17 @@ import psycopg2
 from datetime import datetime, timezone, timedelta
 
 consumer = KafkaConsumer(
-  bootstrap_servers=["192.168.38.136:9092"],
+  bootstrap_servers=["192.168.38.136:9092"], #192.168.38.136
   group_id="demo-group",
   auto_offset_reset="earliest",
   enable_auto_commit=False,
-  consumer_timeout_ms=1000,
+  #consumer_timeout_ms=1000,
   value_deserializer=lambda m: json.loads(m.decode('ascii'))
 )
 
 consumer.subscribe(["gridPMU"])
 
-CONNECTION = "postgres://postgres:password@localhost:30000/postgres"
+CONNECTION = "postgres://postgres:password@192.168.38.240:30000/postgres" #192.168.38.240
 
 insert_query = """INSERT INTO randomPMU3p 
                 (pmu_id, time, 
@@ -105,7 +105,7 @@ finally:
 
 
 
-# CREATE TABLE randomPMU3p (
+# CREATE TABLE pmu_data (
 # pmu_id INTEGER,
 # time TIMESTAMPTZ,
 # stream_id_a INTEGER,
