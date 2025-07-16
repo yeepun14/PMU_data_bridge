@@ -109,12 +109,15 @@ PMUs measure values such as voltage (V), current (I), Frequency, and Phase angle
 From [microgridPMU](databridge/microgridPMU.py)
 
 ### Phasor Data Concentrator (PDC)
-From [microgridPDC](databridge/microgridPDC.py)
+To collect and process synchrophasor data, two custom PDCs was developed. They receive real-time data from the microgrid PMU, align measurements to a 20 ms interval based on timestamp, and calculate both average and reactive power for each phase and the total power. The processed data is then forwarded to Redpanda for downstream analytics and visualization.
+
+From [microgridPDC](databridge/microgridPDC.py) We use this code to collect data from microgrid PMU which is the generated data from [microgridPMU](databridge/microgridPMU.py) and produce message to Redpanda in topic "microgridPMU"
+
+From [tinyPDC_udp](databridge/tinyPDC_udp.py) We use this code to collect data from grid PMU which get the real data from a PMU device and produce message to Redpanda in topic "gridPMU".
 
 ```
 ใส่โค้ดที่อยากอธิบาย
 ```
-From [tinyPDC_udp](databridge/tinyPDC_udp.py)
 
 ```
 ใส่โค้ดที่อยากอธิบาย
