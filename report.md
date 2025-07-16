@@ -115,8 +115,10 @@ From [microgridPDC](databridge/microgridPDC.py) We use this code to collect data
 
 From [tinyPDC_udp](databridge/tinyPDC_udp.py) We use this code to collect data from grid PMU which get the real data from a PMU device and produce message to Redpanda in topic "gridPMU".
 
+
+To align timestamp, we round the time to a 20 ms interval using this code
 ```
-ใส่โค้ดที่อยากอธิบาย
+tstamp   = round(round(pmu_data["time"]/0.02) * 0.02, 2) 
 ```
 
 ```
