@@ -121,8 +121,24 @@ To align timestamp, we round the time to a 20 ms interval using this code
 tstamp   = round(round(pmu_data["time"]/0.02) * 0.02, 2) 
 ```
 
+To calculate average and reactive power of each phase and the total power, we use this function
 ```
-ใส่โค้ดที่อยากอธิบาย
+def average_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
+                    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+                    return V_mag * I_mag * math.cos(angle_diff_rad)
+                def reactive_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
+                    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+                    return V_mag * I_mag * math.sin(angle_diff_rad)
+                
+                Pa = average_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
+                Pb = average_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
+                Pc = average_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
+                Qa = reactive_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
+                Qb = reactive_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
+                Qc = reactive_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
+
+                P_total = Pa + Pb + Pc
+                Q_total = Qa + Qb + Qc
 ```
 
 ### Message Queue System
