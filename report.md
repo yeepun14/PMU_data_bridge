@@ -69,18 +69,15 @@ A system that collects data from multiple PMUs and aggregates it for further pro
 ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
 
-> **Choose Redpanda because** we need a Kafka-compatible streaming system with high 
-durability and performance.
-You’re building a system with stream processing, event sourcing, or real-time analytics.
+> **Choose Redpanda because** we need a Kafka-compatible streaming system with high durability and performance. Redpanda building a system with stream processing, event sourcing, and real-time analytics with easy to manage interface.
 
-| Feature | Redpanda | MQTT Broker |
-| --- | --- | -- |
-| *Protocol* | Kafka (binary, high-throughput) | MQTT (lightweight, pub/sub) |
-| *Performance goal* | High throughput, high durability | Lightweight, low power use |
-|*Use case focus*| Streaming big data | Communicating with many small devices | 
-|*Persistence*| Strong durability guarantees| Often memory-based with optional persistence |
-| *Client types*| Servers, apps, streaming systems | IoT devices, mobile clients |
-| *Connectivity* | Not optimized for mobile/IoT | Built for intermittent, unreliable connections |
+| **Feature**     | **Redpanda**                               | **MQTT Broker**                          |
+|----------------|--------------------------------------------|------------------------------------------|
+| **Protocol**   | Kafka (binary, high-throughput)            | MQTT (lightweight, low-overhead)         |
+| **GUI**        | Built-in web console                       | No built-in GUI (uses external tools)    |
+| **Storage**    | Persistent with retention and replay       | Optional, often in-memory                |
+| **Clients**    | Backend apps, data pipelines               | IoT devices, mobile clients              |
+| **Use Case**   | Scalable streaming and analytics           | Lightweight device communication         |
 
 ### TimescaleDB
 A time-series database built on PostgreSQL that is suitable for real-time data ingestion and querying.
