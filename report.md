@@ -311,3 +311,13 @@ We have divided the system into three separate PCs, each performing specific tas
 (It is not necessary to follow this design)
 
 # Result
+
+### 🔹 **Summary**
+System successfully implemented a real-time data streaming system that bridges phasor measurements from grid and microgrid PMUs into a robust analytics pipeline.
+System overview :
+```
+PMU Data Collection → PDC (20ms sync, P/Q calc) → Redpanda → TimescaleDB → Grafana Dashboard
+```
+### 🔹 **Demo**
+Live Visualization using Grafana dashboards. (Auto-updates every 5 seconds, with potential for faster refresh via **Kafka** plugin integration but not stable.)
+
