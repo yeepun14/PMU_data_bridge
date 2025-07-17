@@ -455,7 +455,6 @@ PMU Data Collection → PDC (20ms sync, P/Q calc) → Redpanda → TimescaleDB �
 Live Visualization using Grafana dashboards. (Auto-updates every 5 seconds, with potential for faster refresh via **Kafka** plugin integration but not stable.)
 
 ![3p_plot](https://github.com/user-attachments/assets/ae2fd916-3aab-4de5-b790-72aca324a0df)
-
 Three-phase voltage data from both PMUs can be shown as tables and time-series plots.
 
 ![3p_table](https://github.com/user-attachments/assets/78871771-cdb8-4379-a97b-daf9718ad54b)
