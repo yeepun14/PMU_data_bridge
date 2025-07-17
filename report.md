@@ -180,7 +180,62 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
             depends_on:
             - timescaledb   # Ensure TimescaleDB starts before Grafana
         ```
-    - **Database**
+    - **Database**\
+    This system collects and stores real-time PMU data using Kafka, Python, and TimescaleDB. PMU data is sent to a Kafka topic (gridPMU and microgridPMU), which is consumed by json_consumer_gridPMU.py and json_consumer_microgridPMU.py.The script extracts electrical measurements from each JSON message and inserts them into a TimescaleDB table (randomPMU3p) running in a Docker container.
+        - 1.Navigate to the folder with docker-compose.yml by running following command in the terminal (Visual Studio code)
+        ```
+        cd <YourDockerComposeFolder>
+        ```
+
+        - 2. Run docker-compose.yml by running following command
+        ```
+        docker compose up -d
+        ```
+        - 3. In docker open timescaledb container in the Containers tab and go to Exec tab
+
+        - 4.Run this command to connect to database.
+        ```
+        psql -d "postgres://postgres:password@localhost/postgres"
+        ```
+        - 5. Create table
+        ```
+        CREATE TABLE pmu_data (
+        pmu_id INTEGER,
+        time TIMESTAMPTZ,
+        stream_id_a INTEGER,
+        stream_id_b INTEGER,
+        stream_id_c INTEGER,
+        stat_a TEXT,
+        stat_b TEXT,
+        stat_c TEXT,
+        va_mag DOUBLE PRECISION,
+        va_ang DOUBLE PRECISION,
+        vb_mag DOUBLE PRECISION,
+        vb_ang DOUBLE PRECISION,
+        vc_mag DOUBLE PRECISION,
+        vc_ang DOUBLE PRECISION,
+        ia_mag DOUBLE PRECISION,
+        ib_mag DOUBLE PRECISION,
+        ic_mag DOUBLE PRECISION,
+        ia_ang DOUBLE PRECISION,
+        ib_ang DOUBLE PRECISION,
+        ic_ang DOUBLE PRECISION,
+        frequency_a DOUBLE PRECISION,
+        frequency_b DOUBLE PRECISION,
+        frequency_c DOUBLE PRECISION,
+        rocof_a DOUBLE PRECISION,
+        rocof_b DOUBLE PRECISION,
+        rocof_c DOUBLE PRECISION,
+        Pa DOUBLE PRECISION,
+        Pb DOUBLE PRECISION,
+        Pc DOUBLE PRECISION,
+        Qa DOUBLE PRECISION,
+        Qb DOUBLE PRECISION,
+        Qc DOUBLE PRECISION,
+        P_total DOUBLE PRECISION,
+        Q_total DOUBLE PRECISION
+        );
+        ```
 
     - **JSON Consumer form gridPMU**\
     This Python script acts as a Kafka consumer that subscribes to the topic "gridPMU" and receives real-time JSON-formatted PMU data. It parses each message, converts the timestamp to Bangkok time, and inserts the extracted data into a TimescaleDB table named randomPMU3p.
