@@ -154,23 +154,92 @@ localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
 ```
 - **Consumer**\
-From [docker-compose.yml](/databridge/docker-database/docker-compose.yml)
+The consumer layer in this system is responsible for retrieving PMU (Phasor Measurement Unit) data, transforming it, and storing it in a Time-Series database (TimescaleDB). Two main data sources—Grid PMU and Microgrid PMU—are consumed via Kafka, processed, and persisted for real-time analytics and visualization in Grafana.
 
-From [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py)
+    - **Docker Database**\
+    The [docker-compose.yml](/databridge/docker-database/docker-compose.yml) contains two key services:
+        - **TimescaleDB**
+            - image: timescale/timescaledb:2.20.0-pg17
+        - **Grafana**
+            - image: grafana/grafana-oss
+            - depends on:  Ensure TimescaleDB starts before Grafana
+        ```
+        #version: '3'
+        services:
+        timescaledb:
+            image: timescale/timescaledb:2.20.0-pg17
+            ports:
+            - "0.0.0.0:30000:5432" 
+            environment:
+            POSTGRES_PASSWORD: password  
 
-```
-ใส่โค้ดที่อยากอธิบาย
-```
+        grafana:
+            image: grafana/grafana-oss
+            ports:
+            - "0.0.0.0:30001:3000"  
+            depends_on:
+            - timescaledb   # Ensure TimescaleDB starts before Grafana
+        ```
+    - **Database**
 
-From [json_consumer_microgridPMU](databridge/json_consumer_microgridPMU.py)
+    - **JSON Consumer form gridPMU**\
+    This Python script acts as a Kafka consumer that subscribes to the topic "gridPMU" and receives real-time JSON-formatted PMU data. It parses each message, converts the timestamp to Bangkok time, and inserts the extracted data into a TimescaleDB table named randomPMU3p.
 
-```
-ใส่โค้ดที่อยากอธิบาย
-```
+        From [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py) and 
+        
+        -  **Import libraries**
+            - KafkaConsumer : Used to receive data from Kafka.
+            - psycopg2 : Used to connect with ProsgreSQL
+            - datetime : Convert timestamp to desired timezone.
+            ```
+            import json
+            from kafka import KafkaConsumer
+            import psycopg2
+            from datetime import datetime,timezone, timedelta
+            ```
+        - **Create Kafka consumer**
+            ```
+            consumer = KafkaConsumer(
+            bootstrap_servers=["192.168.38.136:9092"], 
+            group_id="demo-group",
+            auto_offset_reset="earliest",
+            enable_auto_commit=False,
+            #consumer_timeout_ms=1000,
+            value_deserializer=lambda m: json.loads(m.decode('ascii'))
+            )
+            ```
+        - **Subscribe and SEt up database connection**
+        Subscribe to data from the gridPMU topic and enter the correct PostgreSQL username, password, IP, and port.
+
+        - **Insert data to table**
+        ```
+        insert_query = """INSERT INTO randomPMU3p 
+                (pmu_id, time, 
+                stream_id_a, stream_id_b, stream_id_c,
+                stat_a, stat_b, stat_c,
+                va_mag, vb_mag, vc_mag, 
+                va_ang, vb_ang, vc_ang, 
+                ia_mag, ib_mag, ic_mag, 
+                ia_ang, ib_ang, ic_ang, 
+                frequency_a, frequency_b, frequency_c, 
+                rocof_a, rocof_b, rocof_c,
+                Pa, Pb, Pc,
+                Qa, Qb, Qc,
+                P_total, Q_total
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s );"""
+        ```
+        - **Read messages from Kafka and insert into the database**\
+        This code acts as a Kafka consumer that continuously listens for PMU data messages from the "gridPMU" topic. Each message is a JSON object containing various measurement values. The program extracts these values, converts the timestamp to Bangkok local time, and then inserts the data into a TimescaleDB table named randomPMU3p for further analysis and visualization.
+
+    For [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py)
+
+    The code in this section works the same as in the JSON consumer gridPMU file, except that the Kafka topic is microgridPMU instead of gridPMU.
+
 
 ### Database Integration
 
 ### Grafana Dashboard
+
 
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
