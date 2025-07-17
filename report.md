@@ -297,6 +297,138 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
 
     The code in this section works the same as in the JSON consumer gridPMU file, except that the Kafka topic is microgridPMU instead of gridPMU.
 
+### Grafana
+Grafana is used as the visualization tool to display PMU data stored in a PostgreSQL database. The data source is configured under the name PMU, and a custom SQL query is used to retrieve the most recent three-phase voltage data from two PMUs (pmu_id = 1 and 2). The query selects the latest values for each voltage magnitude (va_mag, vb_mag, vc_mag) and angle (va_ang, vb_ang, vc_ang.)
+```
+SELECT DISTINCT ON (pmu_id)
+    pmu_id, time, va_mag, va_ang,
+    vb_mag, vb_ang,
+    vc_mag, vc_ang
+FROM randompmu3p 
+WHERE pmu_id IN (1, 2)
+ORDER BY pmu_id, time DESC;
+```
+For visualization, the Plotly panel plugin is used with a polar coordinate chart to represent voltage phasors. The configuration includes conversion of angles from radians to degrees and plotting both PMU data sets on the same chart for comparison. Solid lines represent PMU 1 (VA, VB, VC) while dotted lines represent PMU 2 (VA2, VB2, VC2).
+
+- **Layout Editor**\
+```
+font:
+  family: Inter, Helvetica, Arial, sans-serif
+xaxis:
+  type: date
+  autorange: true
+  automargin: true
+yaxis:
+  autorange: true
+  automargin: true
+title:
+  automargin: true
+margin:
+  l: 20
+  r: 20
+  b: 20
+  t: 20
+polar:
+  radialaxis:
+    range:
+      - 0
+      - 300
+    tickangle: 45
+    tickfont:
+      size: 10
+```
+- **Script Editor**
+```
+let series = data.series[0];
+
+let va_mag = series.fields.find(f => f.name === 'va_mag').values[0];
+let va_ang = series.fields.find(f => f.name === 'va_ang').values[0] * 180 / Math.PI;
+let vb_mag = series.fields.find(f => f.name === 'vb_mag').values[0];
+let vb_ang = series.fields.find(f => f.name === 'vb_ang').values[0] * 180 / Math.PI;
+let vc_mag = series.fields.find(f => f.name === 'vc_mag').values[0];
+let vc_ang = series.fields.find(f => f.name === 'vc_ang').values[0] * 180 / Math.PI;
+
+let v2a_mag = series.fields.find(f => f.name === 'va_mag').values[1];
+let v2a_ang = series.fields.find(f => f.name === 'va_ang').values[1] * 180 / Math.PI;
+let v2b_mag = series.fields.find(f => f.name === 'vb_mag').values[1];
+let v2b_ang = series.fields.find(f => f.name === 'vb_ang').values[1] * 180 / Math.PI;
+let v2c_mag = series.fields.find(f => f.name === 'vc_mag').values[1];
+let v2c_ang = series.fields.find(f => f.name === 'vc_ang').values[1] * 180 / Math.PI;
+
+return {
+  data: [
+    // VA
+    {
+      type: 'scatterpolar',
+      r: [0, va_mag],
+      theta: [0, va_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'red' },
+      text: ['', 'VA'],
+      textposition: 'top center',
+      name: 'VA'
+    },
+    // VB
+    {
+      type: 'scatterpolar',
+      r: [0, vb_mag],
+      theta: [0, vb_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'green' },
+      text: ['', 'VB'],
+      textposition: 'top center',
+      name: 'VB'
+    },
+    // VC
+    {
+      type: 'scatterpolar',
+      r: [0, vc_mag],
+      theta: [0, vc_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'blue' },
+      text: ['', 'VC'],
+      textposition: 'top center',
+      name: 'VC'
+    },
+
+    // VA2
+    {
+      type: 'scatterpolar',
+      r: [0, v2a_mag],
+      theta: [0, v2a_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'red', dash: 'dot'},
+      text: ['', 'VA2'],
+      textposition: 'top center',
+      name: 'VA2'
+    },
+    // VB2
+    {
+      type: 'scatterpolar',
+      r: [0, v2b_mag],
+      theta: [0, v2b_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'green', dash: 'dot' },
+      text: ['', 'VB2'],
+      textposition: 'top center',
+      name: 'VB2'
+    },
+    // VC2
+    {
+      type: 'scatterpolar',
+      r: [0, v2c_mag],
+      theta: [0, v2c_ang],
+      mode: 'lines+text',
+      line: { width: 3, color: 'blue', dash: 'dot' },
+      text: ['', 'VC2'],
+      textposition: 'top center',
+      name: 'VC2'
+    }
+  ]
+};
+```
+
+
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
