@@ -74,7 +74,7 @@ A high-performance streaming platform that is designed for real-time data proces
 | **Feature**     | **Redpanda**                               | **MQTT Broker**                          |
 |----------------|--------------------------------------------|------------------------------------------|
 | **Protocol**   | Kafka (binary, high-throughput)            | MQTT (lightweight, low-overhead)         |
-| **GUI**        | Built-in web console                       | No built-in GUI (uses external tools)    |
+| **Interface**        | Built-in web console                       | No built-in GUI (uses external tools)    |
 | **Storage**    | Persistent with retention and replay       | Optional, often in-memory                |
 | **Clients**    | Backend apps, data pipelines               | IoT devices, mobile clients              |
 | **Use Case**   | Scalable streaming and analytics           | Lightweight device communication         |
