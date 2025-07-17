@@ -149,6 +149,13 @@ A high-throughput, low-latency streaming platform based on a distributed log arc
 
 From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change localhost to Network ip at port 9092 (Kafka broker)
 
+contains two key services:\
+**redpanda-broker** : \
+image: redpandadata/redpanda:v25.1.4  \
+**redpanda-console** : \
+image: redpandadata/console:v3.1.1 \
+depends on: redpanda-broker
+
 ```
 localhost: 9092 # change localhost to Network ip
 192.168.38.136: 9092
@@ -182,7 +189,7 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
         ```
     - **Database**\
     This system collects and stores real-time PMU data using Kafka, Python, and TimescaleDB. PMU data is sent to a Kafka topic (gridPMU and microgridPMU), which is consumed by json_consumer_gridPMU.py and json_consumer_microgridPMU.py.The script extracts electrical measurements from each JSON message and inserts them into a TimescaleDB table (randomPMU3p) running in a Docker container.
-        - 1.Navigate to the folder with docker-compose.yml by running following command in the terminal (Visual Studio code)
+        - 1. Navigate to the folder with docker-compose.yml by running following command in the terminal (Visual Studio code)
         ```
         cd <YourDockerComposeFolder>
         ```
@@ -193,7 +200,7 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
         ```
         - 3. In docker open timescaledb container in the Containers tab and go to Exec tab
 
-        - 4.Run this command to connect to database.
+        - 4. Run this command to connect to database.
         ```
         psql -d "postgres://postgres:password@localhost/postgres"
         ```
@@ -289,12 +296,6 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
     For [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py)
 
     The code in this section works the same as in the JSON consumer gridPMU file, except that the Kafka topic is microgridPMU instead of gridPMU.
-
-
-### Database Integration
-
-### Grafana Dashboard
-
 
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
