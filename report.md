@@ -104,7 +104,7 @@ PMUs measure values such as voltage (V), current (I), Frequency, and Phase angle
 From [microgridPMU](databridge/microgridPMU.py)
 
 ### Phasor Data Concentrator (PDC)
-To collect and process synchrophasor data, two custom PDCs was developed. They receive real-time data from the microgrid PMU, align measurements to a 20 ms interval based on timestamp, and calculate both average and reactive power for each phase and the total power. The processed data is then forwarded to Redpanda for downstream analytics and visualization.
+To collect and process synchrophasor data, two custom PDCs was developed. They receive real-time data from the microgrid PMU, align measurements to a 20 ms interval based on timestamp, and calculate both active and reactive power for each phase and the total power. The processed data is then forwarded to Redpanda for downstream analytics and visualization.
 
 From [microgridPDC](databridge/microgridPDC.py) We use this code to collect data from microgrid PMU which is the generated data from [microgridPMU](databridge/microgridPMU.py) and produce message to Redpanda in topic "microgridPMU"
 
@@ -116,7 +116,7 @@ To align timestamp, we round the time to a 20 ms interval using this code
 tstamp   = round(round(pmu_data["time"]/0.02) * 0.02, 2) 
 ```
 
-To calculate average and reactive power of each phase and the total power, we use this function
+To calculate active and reactive power of each phase and the total power, we use this function
 ```
 def average_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
     angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
@@ -158,7 +158,7 @@ localhost: 9092 # change localhost to Network ip
 - **Consumer**\
 The consumer layer in this system is responsible for retrieving PMU (Phasor Measurement Unit) data, transforming it, and storing it in a Time-Series database (TimescaleDB). Two main data sources—Grid PMU and Microgrid PMU—are consumed via Kafka, processed, and persisted for real-time analytics and visualization in Grafana.
 
-    - **Docker Database**\
+    - **Docker Database & Dashboard**\
     The [docker-compose.yml](/databridge/docker-database/docker-compose.yml) contains two key services:
         - **TimescaleDB**
             - image: timescale/timescaledb:2.20.0-pg17
