@@ -98,7 +98,7 @@ A communication protocol that allows two-way, real-time communication between a 
 | **5** | 22/06/2025 – 28/06/2025 | Successfully transmitted data to **Redpanda**, processed it into structured orders, and forwarded it to the **database** and **Grafana** for visualization.                                                   |
 | **6** | 29/06/2025 – 05/07/2025 | Utilized real-time data from **gridPMU** and **microgridPMU** to compute active (P) and reactive power (Q). The processed data was then sent to the database and Grafana, including phase plot visualizations. |
 | **7** | 06/07/2025 – 12/07/2025 | Conducted data ping testing and completed the written report.                                                                                                            |
-| **8** | 13/07/2025 – 19/07/2025 | Prepared final presentation materials.                                                      |
+| **8** | 13/07/2025 – 19/07/2025 | Prepared final presentation materials and Web Dashboard development.                                     |
 | **9** | 20/07/2025 – 21/07/2025 | **Pitch Day**: Final project presentations and official conclusion of the internship program.   
 
 ### Phasor measurement Units (PMUs)
@@ -513,4 +513,4 @@ Real-time updated Visualization using WebSocket show three-phase Voltage Phasor 
 ### 🔹 **Project use case next step**
 PMU Data Bridge project enables real-time synchronization checks between the grid and microgrid by comparing phasor data from both sides using PMUs. The breaker will open (cut) if the phasor data from the GridPMU and MicrogridPMU are not synchronized to prevent unstable or unsafe grid connection.
 
-![PMU_gewartz](https://github.com/user-attachments/assets/a81dd70b-8f1a-4d8f-a53b-6c04524a122c)
+![PMU_gewartz](https://github.com/user-attachments/assets/9708f4ec-8fa4-4c63-8fdd-956326c30621)
