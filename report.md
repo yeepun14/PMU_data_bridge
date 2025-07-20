@@ -427,7 +427,7 @@ return {
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
-![Flowchart](https://github.com/user-attachments/assets/b24babc6-0878-498b-a049-43a8d84eabdd)
+![Flowchart](https://github.com/user-attachments/assets/610b3c0b-1c47-4003-9951-ea99c21cdf03)
 
 - **PC 1** collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
 
@@ -455,3 +455,5 @@ Three-phase voltage data from both PMUs can be shown as tables and time-series p
 ![3p_table](https://github.com/user-attachments/assets/78871771-cdb8-4379-a97b-daf9718ad54b)
 
 Real-time updated Visualization using WebSocket show three-phase Voltage Phasor Diagram, Real-time PMU Data from Grid and Microgrid PMU, Synchronization Analysis (Phase Angle and Magnitude difference).
+
+![WebSocket](https://github.com/user-attachments/assets/e3c7b9ca-9c4c-4c87-847a-cef0559f03b6)
