@@ -58,7 +58,7 @@ The data bridging process involves extracting PMU data, transforming it into a s
 ### Phasor measurement Units (PMUs)
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in **IEEE C37.118 format.**
 
-> IEEE C37.118.1: Standard for Synchrophasor Measurements for Power Systems have Total Vector Error (TVE) < 1% in steady state
+> IEEE C37.118.1: Standard for Synchrophasor Measurements for PMU
 
 ### Phasor Data Concentrator (PDC)
 
@@ -69,13 +69,13 @@ A high-performance streaming platform that is designed for real-time data proces
 
 > **Choose Redpanda because** we need a Kafka-compatible streaming system with high durability and performance. Redpanda building a system with stream processing, event sourcing, and real-time analytics with easy to manage interface.
 
-| **Feature**     | **Redpanda**                               | **MQTT Broker**                          |
-|----------------|--------------------------------------------|------------------------------------------|
-| **Protocol**   | Kafka (binary, high-throughput)            | MQTT (lightweight, low-overhead)         |
-| **Interface**        | Built-in web console                       | No built-in GUI (uses external tools)    |
-| **Storage**    | Persistent with retention and replay       | Optional, often in-memory                |
-| **Clients**    | Backend apps, data pipelines               | IoT devices, mobile clients              |
-| **Use Case**   | Scalable streaming and analytics           | Lightweight device communication         |
+
+| Feature                          | Redpanda                                                                 | MQTT Broker                                                  |
+|----------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------|
+| **Interface**                    | ✅ Built-in web console                                                  | ❌ No built-in GUI (uses external tools)                     |
+| **Data Durability**              | ✅ Persistent & Reliable  <br>🗂 Supports data recording and replay for audits or recovery | ❌ Data may be lost if client disconnects                    |
+| **Real-time Use Case Compatibility** | ✅ Real-time + analytics                                                 | ✅ Real-time only  <br>❌ No direct analytics support         |
+
 
 ### TimescaleDB
 A time-series database built on PostgreSQL that is suitable for real-time data ingestion and querying.
@@ -288,7 +288,7 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
         - **Read messages from Kafka and insert into the database**\
         This code acts as a Kafka consumer that continuously listens for PMU data messages from the "gridPMU" topic. Each message is a JSON object containing various measurement values. The program extracts these values, converts the timestamp to Bangkok local time, and then inserts the data into a TimescaleDB table named randomPMU3p for further analysis and visualization.
 
-    For [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py)
+    For [json_comsumer_microgridPMU](databridge/json_comsumer_microgridPMU.py)
 
     The code in this section works the same as in the JSON consumer gridPMU file, except that the Kafka topic is microgridPMU instead of gridPMU.
 
@@ -433,7 +433,7 @@ We have divided the system into three separate PCs, each performing specific tas
 
 - **PC 2** is responsible for receiving the processed data from PC 1 (Redpanda). Moreover, it is the connected netwerk IP for PC 1 and PC 3 to collect data.
 
-- **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard.
+- **PC 3** stores the received data into a database and displays synchronized measurements through a Grafana Dashboard. Moreover, PC 3 show data from Redpanda to WebSocket.
 
 (It is not necessary to follow this design)
 
@@ -453,3 +453,5 @@ Live Visualization using Grafana dashboards. (Auto-updates every 5 seconds, with
 Three-phase voltage data from both PMUs can be shown as tables and time-series plots.
 
 ![3p_table](https://github.com/user-attachments/assets/78871771-cdb8-4379-a97b-daf9718ad54b)
+
+Real-time updated Visualization using WebSocket show three-phase Voltage Phasor Diagram, Real-time PMU Data from Grid and Microgrid PMU, Synchronization Analysis (Phase Angle and Magnitude difference).
