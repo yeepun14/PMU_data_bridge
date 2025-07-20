@@ -509,3 +509,7 @@ Three-phase voltage data from both PMUs can be shown as tables and time-series p
 Real-time updated Visualization using WebSocket show three-phase Voltage Phasor Diagram, Real-time PMU Data from Grid and Microgrid PMU, Synchronization Analysis (Phase Angle and Magnitude difference).
 
 ![WebSocket](https://github.com/user-attachments/assets/e3c7b9ca-9c4c-4c87-847a-cef0559f03b6)
+
+### 🔹 **Project use case next step**
+PMU Data Bridge project enables real-time synchronization checks between the grid and microgrid by comparing phasor data from both sides using PMUs. The breaker will open (cut) if the phasor data from the GridPMU and MicrogridPMU are not synchronized to prevent unstable or unsafe grid connection.
+
