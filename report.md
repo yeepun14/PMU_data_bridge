@@ -431,7 +431,7 @@ return {
 
 - Backend
 `server.js` is a `node.js` backend script that sets up the WebSocket server.
-Its main role is to listen for incoming WebSocket connections from frontend clients (e.g., a browser dashboard) and send data to them in real time.\
+Its main role is to listen for incoming WebSocket connections from frontend clients (e.g., a browser dashboard) and send data to them in real time.
 
 | File              | Description                    |
 |-------------------|-------------------------------|
