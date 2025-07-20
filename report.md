@@ -145,6 +145,17 @@ TinyPDC retrieves data → Kafka receives and streams the data → PostgreSQL st
 - **Redpanda**\
 A high-throughput, low-latency streaming platform based on a distributed log architecture. It supports real-time data ingestion and processing with strong consistency guarantees, making it suitable for event-driven systems and time-sensitive applications. Its built-in management interface facilitates intuitive data stream monitoring and control, enabling seamless integration within modern data pipelines.
 
+From [microgridPDC](databridge/microgridPDC.py) and [tinyPDC_udp](databridge/tinyPDC_udp.py) `KafkaProducer` send msg to Redpanda
+```
+# Class that send msg to Redpanda broker
+producer = KafkaProducer(     
+    # Redpanda broker 
+    bootstrap_servers = "192.168.38.136:9092", 
+    # Redpanda broker ip      
+    value_serializer=lambda m: json.dumps(m).encode('ascii')
+        )
+```
+
 From [docker-compose.yml](/databridge/docker-redpanda/docker-compose.yml) Change localhost to Network ip at port 9092 (Kafka broker)
 
 contains two key services:\
