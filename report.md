@@ -479,7 +479,7 @@ Frontend apps runs on `localhost:3000`
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
 
-![Flowchart](https://github.com/user-attachments/assets/610b3c0b-1c47-4003-9951-ea99c21cdf03)
+![Flowchart](https://github.com/user-attachments/assets/3f16267c-f740-4eb4-831d-1c51297dada4)
 
 - **PC 1** collects data from two sources: the Microgrid PMU, which provides measurements of Voltage, Frequency, and Phase Angle, and the Grid PMU, which receives data from the utility grid. This PC functions as a data concentrator, converting raw PMU data into a more readable format and calculating Active power (P), Reactive power (Q), and Apparent power (S) for further analysis.
 
@@ -513,3 +513,4 @@ Real-time updated Visualization using WebSocket show three-phase Voltage Phasor 
 ### 🔹 **Project use case next step**
 PMU Data Bridge project enables real-time synchronization checks between the grid and microgrid by comparing phasor data from both sides using PMUs. The breaker will open (cut) if the phasor data from the GridPMU and MicrogridPMU are not synchronized to prevent unstable or unsafe grid connection.
 
+![PMU_gewartz](https://github.com/user-attachments/assets/a81dd70b-8f1a-4d8f-a53b-6c04524a122c)
