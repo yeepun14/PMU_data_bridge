@@ -97,7 +97,7 @@ A communication protocol that allows two-way, real-time communication between a 
 | **4** | 15/06/2025 – 21/06/2025 | Practiced sending data from **pyPMU** and **randomPMU** to **tinyPDC** and subsequently to **Redpanda**. However, sending real PMU data was not yet successful.                                                |
 | **5** | 22/06/2025 – 28/06/2025 | Successfully transmitted data to **Redpanda**, processed it into structured orders, and forwarded it to the **database** and **Grafana** for visualization.                                                   |
 | **6** | 29/06/2025 – 05/07/2025 | Utilized real-time data from **gridPMU** and **microgridPMU** to compute active (P) and reactive power (Q). The processed data was then sent to the database and Grafana, including phase plot visualizations. |
-| **7** | 06/07/2025 – 12/07/2025 | Conducted data ping testing and completed the written report.                                                                                                            |
+| **7** | 06/07/2025 – 12/07/2025 | Worked on networking and completed the written report.                                                                                                            |
 | **8** | 13/07/2025 – 19/07/2025 | Prepared final presentation materials and Web Dashboard development.                                     |
 | **9** | 20/07/2025 – 21/07/2025 | **Pitch Day**: Final project presentations and official conclusion of the internship program.   
 
@@ -256,7 +256,7 @@ The consumer layer in this system is responsible for retrieving PMU (Phasor Mea
     - **JSON Consumer form gridPMU**\
     This Python script acts as a Kafka consumer that subscribes to the topic "gridPMU" and receives real-time JSON-formatted PMU data. It parses each message, converts the timestamp to Bangkok time, and inserts the extracted data into a TimescaleDB table named randomPMU3p.
 
-        From [json_comsumer_gridPMU](databridge/json_comsumer_gridPMU.py) and 
+        
         
         -  **Import libraries**
             - KafkaConsumer : Used to receive data from Kafka.
@@ -440,9 +440,9 @@ return {
 
 ### WebSocket
 
-- Backend
-`server.js` is a `node.js` backend script that sets up the WebSocket server.
-Its main role is to listen for incoming WebSocket connections from frontend clients (e.g., a browser dashboard) and send data to them in real time.
+- Backend\
+The backend system receives data from Kafka sent from both gridPMU and microdgridPMU and sends data in real-time to the frontend via WebSocket. It also has an API for retrieving the latest data and checking the status of the system. The backend works asynchronously to support multiple users connecting smoothly at the same time.
+
 
 | File              | Description                    |
 |-------------------|-------------------------------|
@@ -464,7 +464,8 @@ const kafka = new Kafka({
 |-------------------|-------------|-----------------------|
 | `server.js`         | WebSocket   | Frontend |
 
-- Frontend
+- Frontend\
+The frontend is developed with React and connects to the backend via WebSocket to display real-time PMU data, including voltage, phase angle, frequency, and a 3-Phase voltage phasor diagram in polar plot format. This allows users to clearly see the difference between grid and microgrid data through the dashboard.
 
 | File                | Description               |
 |---------------------|---------------------------|
