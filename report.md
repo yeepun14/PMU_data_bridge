@@ -52,13 +52,13 @@ This project is designed to bridge data from phasor measurement units (PMUs) to 
 ### Overview
 The data bridging process involves extracting PMU data, transforming it into a suitable format, and then loading it into Redpanda for real-time analytics and processing.
 
-![Image](<https://github.com/user-attachments/assets/3b1ec6a9-7486-485f-ba60-60b3b424247a />)
+![Flowchart_overview](https://github.com/user-attachments/assets/6a632eb4-db3f-4510-ad9f-efa641e9a253)
 
 
 ### Phasor measurement Units (PMUs)
 A device used to measure the electrical parameters on an electricity grid in **real-time data**. It sends data over the network in **IEEE C37.118 format.**
 
-> IEEE C37.118.1: Standard for Synchrophasor Measurements for PMU
+> IEEE C37.118: Standard for Synchrophasor Measurements for PMU
 
 ### Phasor Data Concentrator (PDC)
 
@@ -67,7 +67,7 @@ A system that collects data from multiple PMUs and aggregates it for further pro
 ### Redpanda
 A high-performance streaming platform that is designed for real-time data processing.
 
-> **Choose Redpanda because** we need a Kafka-compatible streaming system with high durability and performance. Redpanda building a system with stream processing, event sourcing, and real-time analytics with easy to manage interface.
+> **Choose Redpanda because** we need a Kafka-compatible streaming system with high durability, reliable and performance. Redpanda building a system with stream processing, event sourcing, and real-time analytics with easy to manage interface.
 
 
 | Feature                          | Redpanda                                                                 | MQTT Broker                                                  |
@@ -82,6 +82,9 @@ A time-series database built on PostgreSQL that is suitable for real-time data i
 
 ### Grafana
 An open-source platform used for data visualization and monitoring.
+
+### WebSocket
+A communication protocol that allows two-way, real-time communication between a frontend (browser) and a backend (server) over a single, long-lived connection.
 
 # What we did
 ### Weekly Progress Summary
@@ -422,7 +425,45 @@ return {
   ]
 };
 ```
+---
 
+### WebSocket
+
+- Backend
+`server.js` is a `node.js` backend script that sets up the WebSocket server.
+Its main role is to listen for incoming WebSocket connections from frontend clients (e.g., a browser dashboard) and send data to them in real time.\
+
+| File              | Description                    |
+|-------------------|-------------------------------|
+| `data-generator.js`  | Generate mock or PMU data      |
+| `server.js`         | Send data via WebSocket        |
+
+From [server.js](kafka-dashboard/backend/server.js) recieve data from redpanda of ip 192.168.38.136 (not localhost)
+```
+// Kafka configuration
+const kafka = new Kafka({
+  clientId: 'pmu-dashboard',
+  brokers: [process.env.KAFKA_BROKER || '192.168.38.136:9092']
+});
+```
+
+- WebSocket Connection
+
+| File            | Protocol    | Destination           |
+|-------------------|-------------|-----------------------|
+| `server.js`         | WebSocket   | Frontend |
+
+- Frontend
+
+| File                | Description               |
+|---------------------|---------------------------|
+| `index.js`            | Render App.js              |
+| `App.js`              | Main layout                |
+| `ConnectionStatus.js`  | Show WebSocket connection status |
+| `DataDisplay.js`       | Show live values           |
+| `PhasorPlot.js`        | Draw 3-Phase Voltage Phasor Diagram and Realtime data of Grid and Microgrid PMU Data (Va, Vb, Vc) phasor plot by react-plotly.js          |
+
+Frontend apps runs on `localhost:3000`
 
 ### System Design
 We have divided the system into three separate PCs, each performing specific tasks according to the flowchart:
