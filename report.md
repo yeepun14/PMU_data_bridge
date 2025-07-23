@@ -13,6 +13,12 @@ When a microgrid reconnects to the main grid (after operating in island mode), t
 - Phase angle
 - Phase sequence
 
+| Synchronizing Parameter                                  | Value         |
+|----------------------------------------------------------|---------------|
+| Breaker Closing Angle                                    | ± 10°         |
+| Generator Side Voltage Difference Relative to System     | 0% to +5%     |
+| Frequency Difference                                     | ± 0.067 Hz    |
+
 If these don’t match, it can lead to:
 - Power surges
 - Equipment damage
@@ -27,7 +33,7 @@ PMUs use GPS-based time stamping to provide synchronized phasor data, essential 
 2. Accurate Parameter Matching
 Synchronization requires that voltage, frequency, and phase angle are closely aligned. PMUs enable real-time monitoring to ensure safe connection or reconnection.
 3. Fast Fault Detection
-With high reporting rates (30–120 samples/second), PMUs detect disturbances faster than traditional SCADA, allowing quicker responses to instability.
+With high reporting rates (30–120 samples/second), allowing quick responses to instability.
 4. Support for Inverter Control
 PMUs enhance the control of inverter-based microgrids by supporting advanced control strategies such as droop control and virtual synchronous operation.
 5. Safe Reconnection & Black Start
@@ -121,16 +127,16 @@ tstamp   = round(round(pmu_data["time"]/0.02) * 0.02, 2)
 
 To calculate active and reactive power of each phase and the total power, we use this function
 ```
-def average_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
-    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+def active_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
+    angle_diff_rad = math.radians(V_ang_deg - I_ang_deg)
     return V_mag * I_mag * math.cos(angle_diff_rad)
 def reactive_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
-    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+    angle_diff_rad = math.radians(V_ang_deg - I_ang_deg)
     return V_mag * I_mag * math.sin(angle_diff_rad)
                 
-Pa = average_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
-Pb = average_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
-Pc = average_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
+Pa = active_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
+Pb = active_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
+Pc = active_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
 Qa = reactive_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
 Qb = reactive_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
 Qc = reactive_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
