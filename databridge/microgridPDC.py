@@ -66,16 +66,16 @@ if __name__ == "__main__":
                 tstamp   = round(round(pmu_data["time"]/0.02) * 0.02, 2)          # avoid shadowing built‑in name `time`
                 m0, m1, m2 = pmu_data["measurements"]  # unpack the three phases
 
-                def average_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
-                    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+                def active_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
+                    angle_diff_rad = math.radians(V_ang_deg - I_ang_deg)
                     return V_mag * I_mag * math.cos(angle_diff_rad)
                 def reactive_power(V_mag, V_ang_deg, I_mag, I_ang_deg):
-                    angle_diff_rad = math.radians(V_ang_deg) - math.radians(I_ang_deg)
+                    angle_diff_rad = math.radians(V_ang_deg - I_ang_deg)
                     return V_mag * I_mag * math.sin(angle_diff_rad)
                 
-                Pa = average_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
-                Pb = average_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
-                Pc = average_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
+                Pa = active_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
+                Pb = active_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
+                Pc = active_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
                 Qa = reactive_power(m0["phasors"][0][0], m0["phasors"][0][1], m0["phasors"][1][0], m0["phasors"][1][1])
                 Qb = reactive_power(m1["phasors"][0][0], m1["phasors"][0][1], m1["phasors"][1][0], m1["phasors"][1][1])
                 Qc = reactive_power(m2["phasors"][0][0], m2["phasors"][0][1], m2["phasors"][1][0], m2["phasors"][1][1])
