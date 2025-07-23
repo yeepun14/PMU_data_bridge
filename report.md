@@ -119,6 +119,13 @@ From [microgridPDC](databridge/microgridPDC.py) We use this code to collect data
 
 From [tinyPDC_udp](databridge/tinyPDC_udp.py) We use this code to collect data from grid PMU which get the real data from a PMU device and produce message to Redpanda in topic "gridPMU".
 
+From
+```
+producer = KafkaProducer(
+    bootstrap_servers = "192.168.38.136:9092" 
+```
+change 192.168.38.136 to IP of the device that will be used to run Redpanda 
+
 
 To align timestamp, we round the time to a 20 ms interval using this code
 ```
